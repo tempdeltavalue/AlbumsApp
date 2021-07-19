@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 
 final class PhotoView: UIViewController {
-    var presenter: AlbumPhotosPresenter?
+    weak var presenter: AlbumPhotosPresenter?
     
     lazy var photosCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
@@ -24,7 +24,6 @@ final class PhotoView: UIViewController {
         collectionView.backgroundColor = .green
         
 //        collectionView.isPagingEnabled = true
-        collectionView.delegate = self
         collectionView.dataSource = self
         
         collectionView.register(LargePhotoCollectionViewCell.self, forCellWithReuseIdentifier: LargePhotoCollectionViewCell.identifier)
@@ -37,7 +36,6 @@ final class PhotoView: UIViewController {
         
         title = NSLocalizedString("Photo", comment: "")
 
-        
         view.addSubview(photosCollectionView)
         
         NSLayoutConstraint.activate([
@@ -71,12 +69,6 @@ extension PhotoView: UICollectionViewDataSource {
         cell.urlStr = presenter?.dataSource[indexPath.row].url
         
         return cell
-    }
-}
-
-extension PhotoView: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        
     }
 }
 

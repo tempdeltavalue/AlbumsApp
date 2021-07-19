@@ -6,14 +6,15 @@
 //
 
 import UIKit
-import Kingfisher
 
 final class LargePhotoCollectionViewCell: UICollectionViewCell {
     static let identifier = "LargePhotoCollectionViewCell"
 
     var urlStr: String? {
         didSet {
-            photoImageView.kf.setImage(with: urlStr?.url)
+            if let url = urlStr?.url {
+                photoImageView.load(url: url, placeholder: UIImage(named: "placeholderImage"))
+            }
         }
     }
     
@@ -25,7 +26,6 @@ final class LargePhotoCollectionViewCell: UICollectionViewCell {
         
         return imageView
     }()
-    
     
     override init(frame: CGRect) {
         super.init(frame: .zero)

@@ -10,9 +10,10 @@ import Foundation
 final class AlbumPhotosPresenter {
     var apiclient = APIClient()
     var dataSource: [Photo]
-    weak var view: AlbumPhotosView?
     
-    var photoView: PhotoView
+    private(set) weak var view: AlbumPhotosView?
+    
+    private(set) var photoView: PhotoView
 
     private(set) var currentSelectedIndex: Int?
     
